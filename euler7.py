@@ -18,5 +18,5 @@ if __name__ == '__main__':
         while n in non_primes:
             n += 1
 
-    # print(primes[10000])
-    print(len(PRIMES))
+    # The answer is 104743
+    print(PRIMES[10000])

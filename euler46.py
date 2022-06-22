@@ -30,5 +30,10 @@ def find_smallest_non_goldbach():
     return n
 
 
-if __name__ == '__main__':
+def main():
+    # The answer is 5777
     print(find_smallest_non_goldbach())
+
+
+if __name__ == '__main__':
+    main()
