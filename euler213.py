@@ -51,6 +51,8 @@ def main():
         for initial_location in range(900):
             result *= (1 - e[initial_location][cube])
         final_probabilities.append(result)
+
+    # The answer is 330.721154
     print(sum(final_probabilities))
 
 
