@@ -1,3 +1,7 @@
+
+from functools import reduce
+
+
 def decompose_to_primes(num):
     decomposition = dict()
     p = 2
@@ -31,10 +35,7 @@ def two_dict_max(dict1, dict2):
 
 
 def dict_to_num(d):
-    num = 1
-    for prime, power in d.items():
-        num *= (prime ** power)
-    return num
+    return reduce((lambda a, b: a * b), [prime ** power for prime, power in d.items()])
 
 
 max_num_dict = dict()

@@ -1,7 +1,8 @@
 
-prod = 1
-for n in range(1, 101):
-    prod *= n
+from functools import reduce
+
+
+prod = reduce(lambda x, y: x*y, range(1, 101))
 
 # The answer is 648
-print(sum(int(c) for c in str(prod)))
+print(reduce((lambda c1, c2: int(c1) + int(c2)), str(prod)))
