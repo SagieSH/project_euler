@@ -1,6 +1,5 @@
 
 NUMBERS_PATH = "euler13_numbers.txt"
-MOD = 10000000000
 
 
 def parse_numbers():
