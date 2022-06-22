@@ -39,4 +39,6 @@ def dict_to_num(d):
 max_num_dict = dict()
 for n in range(1, 21):
     max_num_dict = two_dict_max(max_num_dict, decompose_to_primes(n))
+
+# The answer is 232792560
 print(dict_to_num(max_num_dict))
