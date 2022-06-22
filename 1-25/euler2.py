@@ -1,18 +1,11 @@
 
-MEMORY_FIB = {1: 1, 2: 2}
+from functools import lru_cache
 
 
-def memoize_fib(func):
-    def inner(num):
-        if num not in MEMORY_FIB.keys():
-            MEMORY_FIB[num] = func(num)
-        return MEMORY_FIB[num]
-
-    return inner
-
-
-@memoize_fib
+@lru_cache
 def fib(num):
+    if (num == 0) or (num == 1):
+        return num
     return fib(num - 1) + fib(num - 2)
 
 

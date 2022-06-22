@@ -1,18 +1,11 @@
 
-MEMORY_COLLATZ = {1: 1}
+from functools import cache
 
 
-def memoize_collatz(func):
-    def inner(num):
-        if num not in MEMORY_COLLATZ.keys():
-            MEMORY_COLLATZ[num] = func(num)
-        return MEMORY_COLLATZ[num]
-
-    return inner
-
-
-@memoize_collatz
+@cache
 def collatz(num):
+    if num == 1:
+        return 1
     if num % 2 == 0:
         return 1 + collatz(num // 2)
     return 1 + collatz((3 * num) + 1)
@@ -21,6 +14,7 @@ def collatz(num):
 max_collatz = 1
 max_num = 1
 for n in range(1, 1000000):
+    print(n)
     curr = collatz(n)
     if curr > max_collatz:
         max_num = n

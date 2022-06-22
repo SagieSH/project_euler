@@ -1,17 +1,8 @@
 
-MEMORY_LATTICE = {}
+from functools import cache
 
 
-def memoize_lattice(func):
-    def inner(length, depth):
-        if (length, depth) not in MEMORY_LATTICE.keys():
-            MEMORY_LATTICE[(length, depth)] = func(length, depth)
-        return MEMORY_LATTICE[(length, depth)]
-
-    return inner
-
-
-@memoize_lattice
+@cache
 def lattice_paths_1(length, depth):
     if min(length, depth) == 0:
         return 1
