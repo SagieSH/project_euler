@@ -1,22 +1,19 @@
 
-LIMIT = 1000000
-PRIMES = []
+def is_prime(n):
+    k = 2
+    while k * k <= n:
+        if (n % k) == 0:
+            return False
+        k += 1
+    return True
 
 
-if __name__ == '__main__':
-    non_primes = set()
-    n = 2
-    m = 2
+primes = []
+p = 2
+while len(primes) < 10001:
+    if is_prime(p):
+        primes.append(p)
+    p += 1
 
-    while n < LIMIT:
-        PRIMES.append(n)
-        while n * m < LIMIT:
-            non_primes.add(n * m)
-            m += 1
-        m = 2
-        n += 1
-        while n in non_primes:
-            n += 1
-
-    # The answer is 104743
-    print(PRIMES[10000])
+# The answer is 104743
+print(primes[-1])
