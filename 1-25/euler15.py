@@ -35,6 +35,5 @@ def lattice_paths(length, depth):
     print(f"For length: {length}, depth: {depth}. 2:", lattice_paths_2(length, depth))
 
 
-lattice_paths(2, 2)
-lattice_paths(3, 3)
+# The answer is 137846528820
 lattice_paths(20, 20)
