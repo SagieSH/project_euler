@@ -34,7 +34,5 @@ for year in range(1901, 2001):
         if weekday(1, month, year) == 1:
             counter += 1
 
-
+# The answer is 171
 print(counter)
-day, month, year = 6, 5, 2001
-print(year, weekday(day, month, year), ((calendar.weekday(year, month, day) + 1) % 7) + 1)
