@@ -39,7 +39,8 @@ for b in PRIMES:
             max_consecutive = n - 1
             max_a, max_b = a, b
 
-# The answer is -59231
 print(f"the polynomial: n^2 + {max_a}n + {max_b}")
 print(f"produces primes, for 0 <= n <= {max_consecutive}")
+
+# The answer is -59231
 print(f"coefficient product is: {max_a * max_b}")
