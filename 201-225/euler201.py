@@ -35,10 +35,8 @@ def add_num(num):
     global options_dict
     old_dict = deepcopy(options_dict)
     for sum_option, inner_dict in old_dict.items():
-        # print(f"\t{sum_option}")
         for operand_amount, option_amount in inner_dict.items():
             if operand_amount < 50:
-                # print(f"\t\t{operand_amount}: {option_amount}")
                 options_dict[sum_option + num][operand_amount + 1] += option_amount
 
 
