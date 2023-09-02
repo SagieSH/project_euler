@@ -1,6 +1,4 @@
-
-def minimize_fraction(numerator, denominator):
-
+from utils import minimize_fraction
 
 
 numerator_product = 1
@@ -17,4 +15,4 @@ for x in range(100, 1000):
         pass
 
 # The answer is: 100
-print(f"{numerator_product} / {denominator_product}")
+print(minimize_fraction(numerator_product, denominator_product)[1])
