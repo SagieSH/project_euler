@@ -16,12 +16,14 @@ def decompose_to_primes(num):
     return decomposition
 
 
+def gcd(a, b):
+    if b > a:
+        a, b = b, a
+    while a % b != 0:
+        a, b = b, a % b
+    return b
+
+
 def minimize_fraction(numerator, denominator):
-    min_numerator, min_denominator = numerator, denominator
-    numerator_primes = decompose_to_primes(numerator)
-    for prime, power in numerator_primes.items():
-        for i in range(power):
-            if min_denominator % prime == 0:
-                min_denominator //= prime
-    min_numerator //= (denominator // min_denominator)
-    return min_numerator, min_denominator
+    g = gcd(numerator, denominator)
+    return numerator // g, denominator // g
