@@ -27,3 +27,21 @@ def gcd(a, b):
 def minimize_fraction(numerator, denominator):
     g = gcd(numerator, denominator)
     return numerator // g, denominator // g
+
+
+def sum_modulo(it, modulo):
+    result = 0
+    for x in it:
+        result = (result + x) % modulo
+    return result
+
+
+def prod_modulo(it, modulo):
+    result = 1
+    for x in it:
+        result = (result * x) % modulo
+    return result
+
+
+def factorial_modulo(num, mod):
+    return prod_modulo(range(1, num + 1), mod)
