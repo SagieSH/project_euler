@@ -45,3 +45,11 @@ def prod_modulo(it, modulo):
 
 def factorial_modulo(num, mod):
     return prod_modulo(range(1, num + 1), mod)
+
+
+def calc_modulo(mod):
+    def outer(func):
+        def inner(*args, **kwargs):
+            return func(*args, **kwargs) % mod
+        return inner
+    return outer
