@@ -1,5 +1,5 @@
 from functools import lru_cache
-from utils import calc_modulo, factorial_modulo, prod_modulo
+from utils.number_theory import calc_modulo, factorial_modulo, prod_modulo
 
 MODULO = (10 ** 9) + 7
 
