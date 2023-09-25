@@ -140,10 +140,12 @@ def plot_crossing_points(points, d):
     plt.scatter([p.real for p in points], [p.imag for p in points])
     # Draw the crossing points
     edge_amount_to_points = dict()
+    # Sort according to amount of edges crossing the point
     for crossing_point, edges in d.items():
         edge_amount = len(edges)
         edge_amount_to_points[edge_amount] = edge_amount_to_points.get(edge_amount, list())
         edge_amount_to_points[edge_amount].append(crossing_point)
+    # Scatter separately for different colors
     for crossing_points in edge_amount_to_points.values():
         plt.scatter([p.real for p in crossing_points], [p.imag for p in crossing_points], s=plot_size)
     # Show the plot
