@@ -3,8 +3,9 @@ from math import comb
 import cmath
 import time
 from itertools import combinations
+import matplotlib.pyplot as plt
+from matplotlib.patches import Circle
 from utils.number_theory import calc_modulo, factorial_modulo, prod_modulo, sum_modulo
-from utils.drawing import plot_complex_points, set_limits, make_square
 
 MODULO = (10 ** 9) + 7
 CLOSENESS = 1e-9
@@ -122,6 +123,33 @@ def get_crossing_dict(points):
     return crossing_point_to_edges
 
 
+def plot_crossing_points(points, d):
+    plot_size = 20
+    # Set limits for the axes
+    plt.xlim(-1, 1)
+    plt.ylim(-1, 1)
+    # Make the drawing a square
+    ax = plt.gca()
+    ax.set_aspect(1)
+    # Draw the unit circle
+    center = (0, 0)
+    radius = 1
+    circle = Circle(center, radius, fill=False)
+    ax.add_patch(circle)
+    # Draw the vertices
+    plt.scatter([p.real for p in points], [p.imag for p in points])
+    # Draw the crossing points
+    edge_amount_to_points = dict()
+    for crossing_point, edges in d.items():
+        edge_amount = len(edges)
+        edge_amount_to_points[edge_amount] = edge_amount_to_points.get(edge_amount, list())
+        edge_amount_to_points[edge_amount].append(crossing_point)
+    for crossing_points in edge_amount_to_points.values():
+        plt.scatter([p.real for p in crossing_points], [p.imag for p in crossing_points], s=plot_size)
+    # Show the plot
+    plt.show()
+
+
 def main():
     """
     Calculate the amount of crossing points over all hamiltonian paths by summing according to 
@@ -137,9 +165,7 @@ def main():
         points = initialize_points(vertices)
         d = get_crossing_dict(points)
         if plot:
-            set_limits((-1, 1), (-1, 1))
-            make_square()
-            plot_complex_points(points + list(d.keys()), show=True)
+            plot_crossing_points(points, d)
         sums.append(sum_modulo([num_of_graphs_containing_with_crossing(vertices, len(d[k])) for k in d.keys()], MODULO))
         end = time.time()
         print(end - start)
