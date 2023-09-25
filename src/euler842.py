@@ -14,6 +14,9 @@ ROUND_SIZE = 9
 @lru_cache
 @calc_modulo(MODULO)
 def unordered_block_placement(block_amount, row_len):
+    """
+    This returns the amount of ways to place {block_amount} identical blocks, inside a row of length {row_len}.
+    """
     if (row_len < 0) or (block_amount < 0) or (row_len < (2 * block_amount)):
         return 0
     if row_len == (2 * block_amount):
@@ -24,6 +27,9 @@ def unordered_block_placement(block_amount, row_len):
 @lru_cache
 @calc_modulo(MODULO)
 def block_placement(block_amount, row_len):
+    """
+    This returns the amount of ways to place {block_amount} unique blocks, inside a row of length {row_len}.
+    """
     return factorial_modulo(block_amount, MODULO) * unordered_block_placement(block_amount, row_len)
 
 
@@ -33,6 +39,7 @@ def num_of_graphs_containing(vertex_amount, edge_amount):
     """
     This returns the number of graphs with {vertex_amount} vertices, which are a hamiltonian path on them,
     and in addition, this path must contain {edge_amount} of disjoint edges.
+    Can be done way more efficiently with better combinatorics, however doesn't change the end result.
     """
     return (prod_modulo(
         [2] * (edge_amount - 1),
@@ -52,10 +59,6 @@ def num_of_graphs_containing_with_crossing(vertex_amount, edge_amount):
     """
     This returns the number of graphs with {vertex_amount} vertices, which are a hamiltonian path on them,
     and in addition, this path must contain at least two of {edge_amount} (which means there will be a crossing).
-    (n choose 2) graphs with intersection of 2
-    (n choose 3) graphs with intersection of 3, we counted them (3 choose 2) times in the first part.
-    (n choose 4) graphs with intersection of 4, we counted them (4 choose 2) times in the first part, 
-                    and (4 choose 3) in the second part.
     """
     if edge_amount < 2:
         return 0
@@ -106,6 +109,10 @@ def four_point_intersection(p1, p2, p3, p4):
 
 
 def get_crossing_dict(points):
+    """
+    Returns a dict, with each key being an optional crossing point,
+        and values being the set of all edges going through said point.
+    """
     crossing_point_to_edges = dict()
     for four_point_tuple in combinations(points, 4):
         crossing_point = round_complex(four_point_intersection(*four_point_tuple))
@@ -116,6 +123,10 @@ def get_crossing_dict(points):
 
 
 def main():
+    """
+    Calculate the amount of crossing points over all hamiltonian paths by summing according to 
+        crossing point instead of according to graph.
+    """
     overall_start = time.time()
     sums = []
     plot = False
