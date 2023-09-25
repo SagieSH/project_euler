@@ -140,7 +140,6 @@ def main():
             set_limits((-1, 1), (-1, 1))
             make_square()
             plot_complex_points(points + list(d.keys()), show=True)
-            print("Finished ploting!")
         sums.append(sum_modulo([num_of_graphs_containing_with_crossing(vertices, len(d[k])) for k in d.keys()], MODULO))
         end = time.time()
         print(end - start)
