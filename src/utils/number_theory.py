@@ -1,3 +1,5 @@
+import math
+
 
 def decompose_to_primes(num):
     decomposition = dict()
@@ -53,3 +55,29 @@ def calc_modulo(mod):
             return func(*args, **kwargs) % mod
         return inner
     return outer
+
+
+def get_prime_list(limit=None, amount=None, get_non_primes=False):
+    if limit is None:
+        assert amount is not None, "Must include limit or amount!"
+        # This is an upper bound on the {amount}'th prime
+        limit = int(amount * (math.log(amount) + 10))
+    else:
+        amount = limit
+    primes = list()
+    is_prime = [None] * limit
+    is_prime[0], is_prime[1] = False, False
+
+    p = 0
+    while len(primes) < amount:
+        try:
+            p = is_prime.index(None, p)
+        except ValueError:
+            break
+        is_prime[p] = True
+        primes.append(p)
+        for mul in range(2, math.ceil(limit / p)):
+            is_prime[p * mul] = False
+    if get_non_primes:
+        return is_prime
+    return primes
