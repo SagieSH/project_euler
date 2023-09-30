@@ -78,6 +78,7 @@ def get_prime_list(limit=None, amount=None, get_non_primes=False):
         primes.append(p)
         for mul in range(2, math.ceil(limit / p)):
             is_prime[p * mul] = False
+
     if get_non_primes:
         return is_prime
     return primes
