@@ -1,4 +1,4 @@
 .idea/
 venv/
-python/__*
-python/*/__*
+python/__pycache__/
+python/*/__pycache__/
