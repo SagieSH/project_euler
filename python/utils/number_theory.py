@@ -57,7 +57,13 @@ def calc_modulo(mod):
     return outer
 
 
-def get_prime_list(limit=None, amount=None, get_non_primes=False):
+def get_prime_list(limit=None, amount=None, get_as_boolean_list=False):
+    """
+    Get a list of primes.
+    Can be according to limit, or amount of primes.
+    :param get_as_boolean_list: Whether to return a list with the index representing the number,
+                                or just a list of all primes.
+    """
     if limit is None:
         assert amount is not None, "Must include limit or amount!"
         # This is an upper bound on the {amount}'th prime
@@ -79,6 +85,6 @@ def get_prime_list(limit=None, amount=None, get_non_primes=False):
         for mul in range(2, math.ceil(limit / p)):
             is_prime[p * mul] = False
 
-    if get_non_primes:
+    if get_as_boolean_list:
         return is_prime
     return primes

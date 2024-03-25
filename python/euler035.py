@@ -1,7 +1,7 @@
 from utils.number_theory import get_prime_list
 
 LIMIT = 10 ** 6
-is_prime = get_prime_list(limit=LIMIT, get_non_primes=True)
+is_prime = get_prime_list(limit=LIMIT, get_as_boolean_list=True)
 
 def num_rotations(num):
     num_str = str(num)
