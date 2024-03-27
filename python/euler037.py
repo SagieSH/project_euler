@@ -56,6 +56,8 @@ def main():
     
     print(f"All left and right: {left_and_right_primes}")
     print(f"There are {len(left_and_right_primes)} of them overall.")
+    
+    # The answer is 748317
     print(f"The sum is: {sum(left_and_right_primes)}")
 
 
